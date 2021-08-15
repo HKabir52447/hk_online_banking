@@ -24,12 +24,19 @@ document.getElementById('withdraw-btn').addEventListener('click', function(e){
     let withdrawText = getWithdraw.innerText;
     let getWithdraWInput = document.getElementById('withdrawinput');
     let withdrawInputValue = getWithdraWInput.value;
-    let totalWithdraw = parseFloat(withdrawText) + parseFloat(withdrawInputValue);
-    getWithdraw.innerText = totalWithdraw;
     getWithdraWInput.value = '';
     let getBlance = document.getElementById('blance');
     let blanceAmount = getBlance.innerText;
     let currentBlance = parseFloat(blanceAmount);
-    let updateBlance = currentBlance - parseFloat(withdrawInputValue);
-    getBlance.innerText = updateBlance;
+    let withdrawBlance = parseFloat(withdrawInputValue)
+    if(withdrawBlance <= currentBlance){
+        let totalWithdraw = parseFloat(withdrawText) + parseFloat(withdrawInputValue);
+        getWithdraw.innerText = totalWithdraw;
+        let updateBlance = currentBlance - withdrawBlance;
+        getBlance.innerText = updateBlance;
+    }
+    else{
+        alert('You have not sufficent blance')
+    }
+    
 })
